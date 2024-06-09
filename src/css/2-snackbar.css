@@ -1,0 +1,39 @@
+.inp{
+    
+    border: 1px solid #808080;
+        border-radius: 4px;
+        width: 360px;
+        height: 40px;
+        display: flex;
+        margin-bottom: 20px;
+}
+.dset{
+width: 338px;
+    height: 78px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #808080;
+}
+.label-ful{
+    font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #2e2f42;
+       
+        
+}
+.btn{
+    border-radius: 8px;
+        padding: 8px 16px;
+        width: 360px;
+        height: 40px;
+        background: #4e75ff;
+        border: none;
+        font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.5;
+            letter-spacing: 0.04em;
+            color: #fff;
+}
