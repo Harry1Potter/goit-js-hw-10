@@ -48,7 +48,6 @@ const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
 
 startBtn.addEventListener('click', () => {
-    // Disable input field when countdown starts
     inputTime.disabled = true;
     startBtn.disabled = true;
 
