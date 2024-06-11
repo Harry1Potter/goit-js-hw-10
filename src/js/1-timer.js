@@ -15,6 +15,12 @@ const options = {
         userSelectedDate = selectedDates[0];
         const timeUntilSelectedDate = userSelectedDate - new Date();
 
+        // Clear the interval if it's already running
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+
         if (timeUntilSelectedDate < 0) {
             iziToast.error({
                 color: 'red',
@@ -22,10 +28,8 @@ const options = {
                 message: 'Please choose a date in the future',
             });
             startBtn.disabled = true;
-            inputTime.disabled = false;
         } else {
             startBtn.disabled = false;
-            inputTime.disabled = true;
         }
     },
 };
@@ -40,17 +44,19 @@ const timerFields = {
 const flatpickrInstance = flatpickr('#datetime-picker', options);
 const inputTime = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
-const timeValues = document.querySelectorAll('.value');
 
 startBtn.disabled = true;
 
 startBtn.addEventListener('click', () => {
+    // Disable input field when countdown starts
+    inputTime.disabled = true;
+    startBtn.disabled = true;
+
     countdownInterval = setInterval(() => {
         const timeInterval = userSelectedDate - new Date();
         
         if (timeInterval < 0) {
             clearInterval(countdownInterval);
-            startBtn.disabled = true;
             inputTime.disabled = false;
             iziToast.success({
                 title: 'Completed',
@@ -85,8 +91,8 @@ function convertMs(ms) {
 }
 
 function updateTimerDisplay({ days, hours, minutes, seconds }) {
-    timeValues[0].textContent = String(days).padStart(2, '0');
-    timeValues[1].textContent = String(hours).padStart(2, '0');
-    timeValues[2].textContent = String(minutes).padStart(2, '0');
-    timeValues[3].textContent = String(seconds).padStart(2, '0');
+    timerFields.days.textContent = String(days).padStart(2, '0');
+    timerFields.hours.textContent = String(hours).padStart(2, '0');
+    timerFields.minutes.textContent = String(minutes).padStart(2, '0');
+    timerFields.seconds.textContent = String(seconds).padStart(2, '0');
 }
